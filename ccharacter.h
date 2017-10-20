@@ -29,6 +29,8 @@ public:
 
     int GetPosX();
     int GetPosY();
+
+    SDL_Rect GetStabRect();
     //void SetRect(SDL_Rect grect);
     //int IsShooting();
     //int IsStabbing();

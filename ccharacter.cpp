@@ -9,17 +9,14 @@ CCharacter::CCharacter()
     m_dy = 0;
     m_visible = 1;
     m_orientation = 1;
-    m_hitbox.h = 70;//80;
-    m_hitbox.w = 60;//70;
-    m_hitbox.x = m_x;
-    m_hitbox.y = m_y;
-    m_stabhitbox.x = m_x;
-    m_stabhitbox.y = m_x;
-    m_stabhitbox.h = 70;
-    m_stabhitbox.w = 70;
-
-
-
+    m_hitbox.h = 66;//80;
+    m_hitbox.w = 20;//70;
+    m_hitbox.x = m_x+22;
+    m_hitbox.y = m_y+7;
+    m_stabhitbox.h = 15;//80;
+    m_stabhitbox.w = 20;//70;
+    m_stabhitbox.x = m_x+50;//or flipped (m_x+1)
+    m_stabhitbox.y = m_y+36;//or flipped ()
 }
 
 CCharacter::~CCharacter()
@@ -40,10 +37,19 @@ m_dy = dy;
 void CCharacter::SetPosition(int x, int y)
 {
     m_x = x;
-    m_hitbox.x = m_x;
+    if(this->GetOrientation())
+    {
+    m_stabhitbox.x = m_x+50;
+    m_hitbox.x = m_x+22;
+    }
+    else
+    {
+    m_stabhitbox.x = m_x+1;
+    m_hitbox.x = m_x+28;
+    }
     m_y = y;
-    m_hitbox.y = m_y;
-
+    m_hitbox.y = m_y+7;
+    m_stabhitbox.y = m_y+36;
 }
 
 void CCharacter::SetAlive(bool alive)
@@ -55,24 +61,50 @@ void CCharacter::IsMoving(int scene_width,int scene_height)
 {
     //Move the dot left or right
     m_x += m_dx;
-    m_hitbox.x = m_x;
+
+    if(this->GetOrientation())
+    {
+    m_stabhitbox.x = m_x+50;
+    m_hitbox.x = m_x+22;
+    }
+    else
+    {
+    m_stabhitbox.x = m_x+1;
+        m_hitbox.x = m_x+28;
+    }
+
+
+
+
     //If the dot went too far to the left or right
     if( ( m_x < 0 ) || ( (m_x + 70) > scene_width ) )
     {
         //Move back
         m_x -= m_dx;
-        m_hitbox.x = m_x;
+
+        if(this->GetOrientation())
+        {
+        m_stabhitbox.x = m_x+50;
+        m_hitbox.x = m_x+22;
+        }
+        else
+        {
+        m_stabhitbox.x = m_x+1;
+            m_hitbox.x = m_x+28;
+        }
     }
 
     //Move the dot up or down
     m_y += m_dy;
-    m_hitbox.y = m_y;
+    m_hitbox.y = m_y+7;
+    m_stabhitbox.y = m_y+36;//or flipped ()
     //If the dot went too far up or down
     if( ( m_y < 0 ) || ( (m_y + 80) > scene_height ) )
     {
         //Move back
         m_y -= m_dy;
-        m_hitbox.y = m_y;
+        m_hitbox.y = m_y+7;
+        m_stabhitbox.y = m_y+36;//or flipped ()
     }
 
 }
@@ -101,8 +133,7 @@ void CCharacter::Free()
    m_dx = 0;
    m_dy = 0;
    m_chartexture= NULL;
-   m_hitbox.x = 0;
-   m_hitbox.y = 0;
+
 }
 
 
@@ -147,3 +178,10 @@ int CCharacter::GetPosY()
 {
     return m_y;
 }
+
+SDL_Rect CCharacter::GetStabRect()
+{
+return m_stabhitbox;
+}
+
+
