@@ -56,11 +56,13 @@ CTexture quitmenubuttonback;
 CTexture quitqueestiontext;
 CTexture keybindinputtext[14];
 CTexture keybindbacktext;
+
 CTexture keybindbuttonconfirm;
 CTexture keybindbuttonback;
 CTexture keybindcommandtext;
 
 CTexture pausequeestiontext;
+CTexture pausequeestiontextb;
 CTexture pausemenubuttonconfirm;
 CTexture pausemenubuttonback;
 
@@ -1563,11 +1565,11 @@ int main( int argc, char* args[] )
 
                     if(keylock && gamemenu == 1)
                     {
-                        highlightcolor = {0xFF,0x00,0x00};
+                        highlightcolor = {56,25,75};
                     }
                     else
                     {
-                      highlightcolor = {0x00,0x00,0xFF};
+                      highlightcolor = {34,108,255};
                     }
 
 
@@ -1648,11 +1650,11 @@ int main( int argc, char* args[] )
 
                         if(keylock)
                         {
-                            highlightcolor = {0xFF,0x00,0x00};
+                            highlightcolor = {56,25,75};
                         }
                         else
                         {
-                          highlightcolor = {0x00,0x00,0xFF};
+                          highlightcolor = {34,108,255};
                         }
 
 
@@ -1727,23 +1729,24 @@ int main( int argc, char* args[] )
 
             if(keylock)
             {
-                highlightcolor = {0xFF,0x00,0x00};
+                highlightcolor = {56,25,75};
             }
             else
             {
-              highlightcolor = {0x00,0x00,0xFF};
+              highlightcolor = {34,108,255};
             }
 
-            SDL_Rect fillRectquit = {SCREEN_WIDTH*1/2-4*42-10, SCREEN_HEIGHT*1/2-2*42-10, 9*42+10, 4*42+10};
+            SDL_Rect fillRectquit = {SCREEN_WIDTH*1/2-7*42-10, SCREEN_HEIGHT*1/2-2*42-10, 14*42+20, 4*42+10};
             SDL_SetRenderDrawColor(gRenderer,12,44,81,255);
             SDL_SetRenderDrawBlendMode(gRenderer,SDL_BLENDMODE_BLEND);
             SDL_RenderFillRect(gRenderer,&fillRectquit);
 
-            if( !pausequeestiontext.LoadFromText("Quit Current Game ?",font42,gRenderer,basecolor))
+            if( !pausequeestiontext.LoadFromText("Leave the Match ?",font42,gRenderer,basecolor))
             {
                 printf( "Unable to load player_a score text!\n" );
             }
-            pausequeestiontext.Render(SCREEN_WIDTH*1/2-2*42,SCREEN_HEIGHT*1/2-42-10,0,gRenderer,SDL_FLIP_NONE);
+            pausequeestiontext.Render(SCREEN_WIDTH*1/2-7*42,SCREEN_HEIGHT*1/2-42-10,0,gRenderer,SDL_FLIP_NONE);
+
 
             if(cpausebuttonplace==1)
             {
@@ -1807,11 +1810,11 @@ int main( int argc, char* args[] )
 
                     if(keylock && optionmenu == 1)
                     {
-                        highlightcolor = {0xFF,0x00,0x00};
+                        highlightcolor = {56,25,75};
                     }
                     else
                     {
-                      highlightcolor = {0x00,0x00,0xFF};
+                      highlightcolor = {34,108,255};
                     }
 
 
@@ -2105,7 +2108,7 @@ int main( int argc, char* args[] )
                     {
                      textkeybindbuffer << "EMPTY";
                     }
-                    if( !keybindoutputtext[i].LoadFromText( textkeybindbuffer.str().c_str(),font42,gRenderer,{0,0,0}))
+                    if( !keybindoutputtext[i].LoadFromText( textkeybindbuffer.str().c_str(),font42,gRenderer,{56,148,225}))
                     {
                         printf( "Unable to load player_a score text!\n" );
                     }
@@ -2117,26 +2120,31 @@ int main( int argc, char* args[] )
 
                         if(keylock)
                         {
-                            highlightcolor = {0xFF,0x00,0x00};
+                            highlightcolor = {56,25,75};
                         }
                         else
                         {
-                          highlightcolor = {0x00,0x00,0xFF};
+                          highlightcolor = {34,108,255};
                         }
 
 
 
 
-                        SDL_Rect fillRectoption = {SCREEN_WIDTH*1/2-4*42-10, SCREEN_HEIGHT*1/2-2*42-10, 9*42+10, 4*42+10};
+                        SDL_Rect fillRectoption = {SCREEN_WIDTH*1/2-4*42-20, SCREEN_HEIGHT*1/2-3*42-10, 9*42+20, 5*42+10};
                         SDL_SetRenderDrawColor(gRenderer,12,44,81,255);
                         SDL_SetRenderDrawBlendMode(gRenderer,SDL_BLENDMODE_BLEND);
                         SDL_RenderFillRect(gRenderer,&fillRectoption);
 
-                        if( !pausequeestiontext.LoadFromText("Save Change and Quit ?",font42,gRenderer,basecolor))
+                        if( !pausequeestiontext.LoadFromText("Save Change",font42,gRenderer,basecolor))
                         {
                             printf( "Unable to load player_a score text!\n" );
                         }
-                        pausequeestiontext.Render(SCREEN_WIDTH*1/2-2*42,SCREEN_HEIGHT*1/2-42-10,0,gRenderer,SDL_FLIP_NONE);
+                        pausequeestiontext.Render(SCREEN_WIDTH*1/2-4*42-10,SCREEN_HEIGHT*1/2-3*42-10,0,gRenderer,SDL_FLIP_NONE);
+                        if( !pausequeestiontextb.LoadFromText("and Quit ?",font42,gRenderer,basecolor))
+                        {
+                            printf( "Unable to load player_a score text!\n" );
+                        }
+                        pausequeestiontextb.Render(SCREEN_WIDTH*1/2-4*42+20,SCREEN_HEIGHT*1/2-2*42-10,0,gRenderer,SDL_FLIP_NONE);
 
                         if(coptionbuttonplace==1)
                         {
@@ -2206,16 +2214,23 @@ int main( int argc, char* args[] )
     }
                     if(keybindcommand)
                     {
-                        SDL_Rect keybindcommandrect = {SCREEN_WIDTH*1/2-4*42-10, SCREEN_HEIGHT*1/2-2*42-10, 9*42+10, 4*42+10};
+                        SDL_Rect keybindcommandrect = {SCREEN_WIDTH*1/2-7*42-10, SCREEN_HEIGHT*1/2-2*42-30, 14*42+30, 3*42+10};
                         SDL_SetRenderDrawColor(gRenderer,12,44,81,255);
                         SDL_SetRenderDrawBlendMode(gRenderer,SDL_BLENDMODE_BLEND);
                         SDL_RenderFillRect(gRenderer,&keybindcommandrect);
 
-                        if( !keybindcommandtext.LoadFromText("Press new key or Press escape to back",font42,gRenderer,basecolor))
+                        if( !keybindcommandtext.LoadFromText("Press new key",font42,gRenderer,basecolor))
                         {
                             printf( "Unable to load player_a score text!\n" );
                         }
-                        keybindcommandtext.Render(SCREEN_WIDTH*1/2-2*42,SCREEN_HEIGHT*1/2-42-10,0,gRenderer,SDL_FLIP_NONE);
+                        keybindcommandtext.Render(SCREEN_WIDTH*1/2-5*42-10,SCREEN_HEIGHT*1/2-2*42-10,0,gRenderer,SDL_FLIP_NONE);
+                        if( !keybindcommandtext.LoadFromText("or escape to back",font42,gRenderer,basecolor))
+                        {
+                            printf( "Unable to load player_a score text!\n" );
+                        }
+                        keybindcommandtext.Render(SCREEN_WIDTH*1/2-7*42,SCREEN_HEIGHT*1/2-42-10,0,gRenderer,SDL_FLIP_NONE);
+
+
                     }
 
 
@@ -2328,25 +2343,25 @@ int main( int argc, char* args[] )
 
                 textbuffer.str("");
                 textbuffer << playerascore ;
-                if( !playerascoretext.LoadFromText(textbuffer.str().c_str(),font24,gRenderer,{0,0,0}))
+                if( !playerascoretext.LoadFromText(textbuffer.str().c_str(),font42,gRenderer,{25,75,144}))
                 {
                     printf( "Unable to load player_a score text!\n" );
                 }
                     textbuffer.str("");
                     textbuffer << playerbscore ;
-                    if( !playerbscoretext.LoadFromText(textbuffer.str().c_str(),font24,gRenderer,{0,0,0}))
+                    if( !playerbscoretext.LoadFromText(textbuffer.str().c_str(),font42,gRenderer,{25,75,144}))
                     {
                         printf( "Unable to load player_b score text!\n" );
                     }
                     textbuffer.str("");
                     textbuffer << playera.GetAmmunition();
-                    if( !playerabulletstext.LoadFromText(textbuffer.str().c_str(),font24,gRenderer,{0,0,0}))
+                    if( !playerabulletstext.LoadFromText(textbuffer.str().c_str(),font42,gRenderer,{25,75,144}))
                     {
                         printf( "Unable to load player_a bullets text!\n" );
                     }
                     textbuffer.str("");
                     textbuffer << playerb.GetAmmunition() ;
-                    if( !playerbbulletstext.LoadFromText(textbuffer.str().c_str(),font24,gRenderer,{0,0,0}))
+                    if( !playerbbulletstext.LoadFromText(textbuffer.str().c_str(),font42,gRenderer,{25,75,144}))
                     {
                         printf( "Unable to load player_b bullets text!\n" );
                     }
@@ -2606,12 +2621,26 @@ playerbscoretext.Render(SCREEN_WIDTH-2*24,2,0,gRenderer,SDL_FLIP_NONE);
                           {
                               dticktimer = 3000 - (SDL_GetTicks() - tickendtimer);
                               textbuffer.str("");
-                              textbuffer << "Player " << iswinner  << " Win ! New Game Starting in : "<< dticktimer/1000;
-                              if( !winnertext.LoadFromText(textbuffer.str().c_str(),font24,gRenderer,{0xFF,0,0}))
+                              textbuffer << "Player " << iswinner  << " Win !";
+                              if( !winnertext.LoadFromText(textbuffer.str().c_str(),font42,gRenderer,{25,75,144}))
                               {
                                   printf( "Unable to load player_a score text!\n" );
                               }
                               winnertext.Render((1./2)*(SCREEN_WIDTH-winnertext.GetWidth()),1./10*SCREEN_HEIGHT,0,gRenderer,SDL_FLIP_NONE);
+                              textbuffer.str("");
+                              textbuffer << "New Game Starts in : "<< dticktimer/1000;
+                              if( !winnertext.LoadFromText(textbuffer.str().c_str(),font42,gRenderer,{25,75,144}))
+                              {
+                                  printf( "Unable to load player_a score text!\n" );
+                              }
+                              winnertext.Render((1./2)*(SCREEN_WIDTH-winnertext.GetWidth()),1./10*SCREEN_HEIGHT+42,0,gRenderer,SDL_FLIP_NONE);
+
+
+
+
+
+
+
                           }
                        }
                        else
